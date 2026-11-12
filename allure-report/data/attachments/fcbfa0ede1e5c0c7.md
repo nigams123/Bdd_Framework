@@ -1,0 +1,60 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: src\feature\login.feature.spec.js >> Verify login >> verify user is able to login with valid credentials
+- Location: .features-gen\src\feature\login.feature.spec.js:6:7
+
+# Error details
+
+```
+Error: Multiple definitions matched scenario step.
+Step: Given I go to "https://qaplayground.com/bank" # src\feature\login.feature:5
+  - Given 'I go to {string}' # src\steps\addAccount.steps.ts:11
+  - Given 'I go to {string}' # src\steps\login.steps.ts:9
+```
+
+# Test source
+
+```ts
+  1  | // Generated from: src\feature\login.feature
+  2  | import { test } from "../../../src/fixture/fixture.ts";
+  3  | 
+  4  | test.describe('Verify login', () => {
+  5  | 
+  6  |   test('verify user is able to login with valid credentials', { tag: ['@login'] }, async ({ Given, When, Then, And, appAction, page }) => { 
+> 7  |     await Given('I go to "https://qaplayground.com/bank"', null, { page }); 
+     |           ^ Error: Multiple definitions matched scenario step.
+  8  |     await And('I enter username "admin"', null, { appAction }); 
+  9  |     await And('I enter password "admin123"', null, { appAction }); 
+  10 |     await When('I click on login button', null, { appAction }); 
+  11 |     await Then('user should see homePage', null, { appAction }); 
+  12 |   });
+  13 | 
+  14 |   test('verify alert message is user provide wrong credential', { tag: ['@login'] }, async ({ Given, When, Then, And, appAction, page }) => { 
+  15 |     await Given('I go to "https://qaplayground.com/bank"', null, { page }); 
+  16 |     await And('I enter username "admin1"', null, { appAction }); 
+  17 |     await And('I enter password "admin321"', null, { appAction }); 
+  18 |     await When('I click on login button', null, { appAction }); 
+  19 |     await Then('user should see alert message for Invalid username or password', null, { appAction, page }); 
+  20 |   });
+  21 | 
+  22 | });
+  23 | 
+  24 | // == technical section ==
+  25 | 
+  26 | test.use({
+  27 |   $test: [({}, use) => use(test), { scope: 'test', box: true }],
+  28 |   $uri: [({}, use) => use('src\\feature\\login.feature'), { scope: 'test', box: true }],
+  29 |   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
+  30 | });
+  31 | 
+  32 | const bddFileData = [ // bdd-data-start
+  33 |   {"pwTestLine":6,"pickleLine":4,"tags":["@login"],"steps":[{"pwStepLine":7,"gherkinStepLine":5,"keywordType":"Context","textWithKeyword":"Given I go to \"https://qaplayground.com/bank\"","stepMatchArguments":[{"group":{"start":8,"value":"\"https://qaplayground.com/bank\"","children":[{"start":9,"value":"https://qaplayground.com/bank","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":8,"gherkinStepLine":6,"keywordType":"Context","textWithKeyword":"And I enter username \"admin\"","stepMatchArguments":[{"group":{"start":17,"value":"\"admin\"","children":[{"start":18,"value":"admin","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":9,"gherkinStepLine":7,"keywordType":"Context","textWithKeyword":"And I enter password \"admin123\"","stepMatchArguments":[{"group":{"start":17,"value":"\"admin123\"","children":[{"start":18,"value":"admin123","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":10,"gherkinStepLine":8,"keywordType":"Action","textWithKeyword":"When I click on login button","stepMatchArguments":[]},{"pwStepLine":11,"gherkinStepLine":9,"keywordType":"Outcome","textWithKeyword":"Then user should see homePage","stepMatchArguments":[]}]},
+  34 |   {"pwTestLine":14,"pickleLine":16,"tags":["@login"],"steps":[{"pwStepLine":15,"gherkinStepLine":17,"keywordType":"Context","textWithKeyword":"Given I go to \"https://qaplayground.com/bank\"","stepMatchArguments":[{"group":{"start":8,"value":"\"https://qaplayground.com/bank\"","children":[{"start":9,"value":"https://qaplayground.com/bank","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":16,"gherkinStepLine":18,"keywordType":"Context","textWithKeyword":"And I enter username \"admin1\"","stepMatchArguments":[{"group":{"start":17,"value":"\"admin1\"","children":[{"start":18,"value":"admin1","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":17,"gherkinStepLine":19,"keywordType":"Context","textWithKeyword":"And I enter password \"admin321\"","stepMatchArguments":[{"group":{"start":17,"value":"\"admin321\"","children":[{"start":18,"value":"admin321","children":[{"children":[]}]},{"children":[{"children":[]}]}]},"parameterTypeName":"string"}]},{"pwStepLine":18,"gherkinStepLine":20,"keywordType":"Action","textWithKeyword":"When I click on login button","stepMatchArguments":[]},{"pwStepLine":19,"gherkinStepLine":21,"keywordType":"Outcome","textWithKeyword":"Then user should see alert message for Invalid username or password","stepMatchArguments":[]}]},
+  35 | ]; // bdd-data-end
+```

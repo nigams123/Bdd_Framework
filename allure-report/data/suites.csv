@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","5126","verify user is able to login with valid credentials","chromium","2026-05-29","passed","2026-05-29","Verify login","src\feature\login.feature.spec.js","",""
+"","5160","verify alert message is user provide wrong credential","chromium","2026-05-29","passed","2026-05-29","Verify login","src\feature\login.feature.spec.js","",""
+"","7367","Add a new account and verify the account is created","chromium","2026-05-29","passed","2026-05-29","addAccounts","src\feature\addAccount.feature.spec.js","",""
+"","3","addAccounts","chromium","2026-05-28","failed","2026-05-28","","src\feature\addAccounts.feature.spec.js","",""
+"","3","Add a new account and verify the account is created","chromium","2026-05-29","failed","2026-05-29","addAccounts","src\feature\addAccounts.feature.spec.js","",""
+"","3","Add a new account and verify the account is created","chromium","2026-05-29","failed","2026-05-29","","src\feature\addAccounts.feature.spec.js","",""
+"","404","verify user is able to login with valid credentials","chromium","2026-05-28","failed","2026-05-28","addAccounts","src\feature\addAccounts.feature.spec.js","",""
